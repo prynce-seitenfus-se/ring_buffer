@@ -51,7 +51,7 @@ bool ring_buffer_init(RingBuffer* rb, uint8_t* buffer, size_t capacity);
  * @param data Byte value to be enqueued.
  * @return true if data was successfully written, false if the buffer is full or rb is NULL.
  */
-static inline bool ring_buffer_push(RingBuffer* rb, uint8_t data)
+static inline __attribute__((no_instrument_function)) bool ring_buffer_push(RingBuffer* rb, uint8_t data)
 {
     if (rb == NULL) {
         return false;
@@ -82,7 +82,7 @@ static inline bool ring_buffer_push(RingBuffer* rb, uint8_t data)
  * @param data Pointer to a uint8_t variable where the dequeued byte is written.
  * @return true if data was successfully read, false if the buffer is empty or pointers are NULL.
  */
-static inline bool ring_buffer_pop(RingBuffer* rb, uint8_t* data)
+static inline __attribute__((no_instrument_function)) bool ring_buffer_pop(RingBuffer* rb, uint8_t* data)
 {
     if ((rb == NULL) || (data == NULL)) {
         return false;
@@ -108,7 +108,7 @@ static inline bool ring_buffer_pop(RingBuffer* rb, uint8_t* data)
  * @param rb Pointer to the RingBuffer instance.
  * @return true if empty or invalid pointer, false if contains data.
  */
-static inline bool ring_buffer_is_empty(const RingBuffer* rb)
+static inline __attribute__((no_instrument_function)) bool ring_buffer_is_empty(const RingBuffer* rb)
 {
     if (rb == NULL) {
         return true;
@@ -123,7 +123,7 @@ static inline bool ring_buffer_is_empty(const RingBuffer* rb)
  * @param rb Pointer to the RingBuffer instance.
  * @return true if full, false otherwise.
  */
-static inline bool ring_buffer_is_full(const RingBuffer* rb)
+static inline __attribute__((no_instrument_function)) bool ring_buffer_is_full(const RingBuffer* rb)
 {
     if (rb == NULL) {
         return false;
@@ -141,7 +141,7 @@ static inline bool ring_buffer_is_full(const RingBuffer* rb)
  * @param rb Pointer to the RingBuffer instance.
  * @return Number of stored bytes, or 0 if pointer is NULL.
  */
-static inline size_t ring_buffer_count(const RingBuffer* rb)
+static inline __attribute__((no_instrument_function)) size_t ring_buffer_count(const RingBuffer* rb)
 {
     if (rb == NULL) {
         return 0U;
@@ -159,7 +159,7 @@ static inline size_t ring_buffer_count(const RingBuffer* rb)
  * @param rb Pointer to the RingBuffer instance.
  * @return Usable capacity in bytes (capacity - 1), or 0 if pointer is NULL.
  */
-static inline size_t ring_buffer_capacity(const RingBuffer* rb)
+static inline __attribute__((no_instrument_function)) size_t ring_buffer_capacity(const RingBuffer* rb)
 {
     if (rb == NULL) {
         return 0U;
